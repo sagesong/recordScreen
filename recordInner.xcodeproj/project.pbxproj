@@ -14,6 +14,9 @@
 		D6455DCC1B145CA90010805B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6455DCB1B145CA90010805B /* Images.xcassets */; };
 		D6455DCF1B145CA90010805B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6455DCD1B145CA90010805B /* LaunchScreen.xib */; };
 		D6455DDB1B145CA90010805B /* recordInnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DDA1B145CA90010805B /* recordInnerTests.m */; };
+		D6455DE61B145D850010805B /* RecordScreenTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DE51B145D850010805B /* RecordScreenTool.m */; };
+		D6455DE91B1462460010805B /* RecordScreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DE81B1462460010805B /* RecordScreenManager.m */; };
+		D6455DED1B14695E0010805B /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DEC1B14695E0010805B /* UIDevice+Hardware.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,35 @@
 		D6455DD41B145CA90010805B /* recordInnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recordInnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6455DD91B145CA90010805B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6455DDA1B145CA90010805B /* recordInnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = recordInnerTests.m; sourceTree = "<group>"; };
+		D6455DE41B145D850010805B /* RecordScreenTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordScreenTool.h; sourceTree = "<group>"; };
+		D6455DE51B145D850010805B /* RecordScreenTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordScreenTool.m; sourceTree = "<group>"; };
+		D6455DE71B1462460010805B /* RecordScreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordScreenManager.h; sourceTree = "<group>"; };
+		D6455DE81B1462460010805B /* RecordScreenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordScreenManager.m; sourceTree = "<group>"; };
+		D6455DEB1B14695E0010805B /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		D6455DEC1B14695E0010805B /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		D6455E971B1482530010805B /* CoreSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreSurface.h; sourceTree = "<group>"; };
+		D6455E991B1482530010805B /* IOSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSurface.h; sourceTree = "<group>"; };
+		D6455E9A1B1482530010805B /* IOSurfaceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSurfaceAPI.h; sourceTree = "<group>"; };
+		D6455E9B1B1482530010805B /* IOSurfaceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSurfaceBase.h; sourceTree = "<group>"; };
+		D6455E9D1B1482530010805B /* IOBSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBSD.h; sourceTree = "<group>"; };
+		D6455E9E1B1482530010805B /* IOCFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCFBundle.h; sourceTree = "<group>"; };
+		D6455E9F1B1482530010805B /* IOCFPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCFPlugIn.h; sourceTree = "<group>"; };
+		D6455EA01B1482530010805B /* IOCFSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCFSerialize.h; sourceTree = "<group>"; };
+		D6455EA11B1482530010805B /* IOCFUnserialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCFUnserialize.h; sourceTree = "<group>"; };
+		D6455EA21B1482530010805B /* IOCFURLAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOCFURLAccess.h; sourceTree = "<group>"; };
+		D6455EA31B1482530010805B /* IODataQueueClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IODataQueueClient.h; sourceTree = "<group>"; };
+		D6455EA41B1482530010805B /* IODataQueueShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IODataQueueShared.h; sourceTree = "<group>"; };
+		D6455EA51B1482530010805B /* IOKitKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOKitKeys.h; sourceTree = "<group>"; };
+		D6455EA61B1482530010805B /* IOKitLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOKitLib.h; sourceTree = "<group>"; };
+		D6455EA71B1482530010805B /* iokitmig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iokitmig.h; sourceTree = "<group>"; };
+		D6455EA81B1482530010805B /* IOKitServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOKitServer.h; sourceTree = "<group>"; };
+		D6455EA91B1482530010805B /* IOMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOMessage.h; sourceTree = "<group>"; };
+		D6455EAA1B1482530010805B /* IOReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOReturn.h; sourceTree = "<group>"; };
+		D6455EAB1B1482530010805B /* IOSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSharedLock.h; sourceTree = "<group>"; };
+		D6455EAC1B1482530010805B /* IOTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOTypes.h; sourceTree = "<group>"; };
+		D6455EAD1B1482530010805B /* OSMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMessageNotification.h; sourceTree = "<group>"; };
+		D6455EAE1B1482530010805B /* IOMobileFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOMobileFrameBuffer.h; sourceTree = "<group>"; };
+		D6455EAF1B1482530010805B /* IOSurfaceAccelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSurfaceAccelerator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +113,8 @@
 		D6455DBD1B145CA90010805B /* recordInner */ = {
 			isa = PBXGroup;
 			children = (
+				D6455E951B1482530010805B /* PrivateFrameworks */,
+				D6455DEA1B14695E0010805B /* UIDevice+Hardware */,
 				D6455DC21B145CA90010805B /* AppDelegate.h */,
 				D6455DC31B145CA90010805B /* AppDelegate.m */,
 				D6455DC51B145CA90010805B /* ViewController.h */,
@@ -89,6 +123,10 @@
 				D6455DCB1B145CA90010805B /* Images.xcassets */,
 				D6455DCD1B145CA90010805B /* LaunchScreen.xib */,
 				D6455DBE1B145CA90010805B /* Supporting Files */,
+				D6455DE41B145D850010805B /* RecordScreenTool.h */,
+				D6455DE51B145D850010805B /* RecordScreenTool.m */,
+				D6455DE71B1462460010805B /* RecordScreenManager.h */,
+				D6455DE81B1462460010805B /* RecordScreenManager.m */,
 			);
 			path = recordInner;
 			sourceTree = "<group>";
@@ -117,6 +155,69 @@
 				D6455DD91B145CA90010805B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D6455DEA1B14695E0010805B /* UIDevice+Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				D6455DEB1B14695E0010805B /* UIDevice+Hardware.h */,
+				D6455DEC1B14695E0010805B /* UIDevice+Hardware.m */,
+			);
+			path = "UIDevice+Hardware";
+			sourceTree = "<group>";
+		};
+		D6455E951B1482530010805B /* PrivateFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6455E961B1482530010805B /* CoreSurface */,
+				D6455E981B1482530010805B /* Headers */,
+				D6455E9C1B1482530010805B /* IOKit */,
+				D6455EAE1B1482530010805B /* IOMobileFrameBuffer.h */,
+				D6455EAF1B1482530010805B /* IOSurfaceAccelerator.h */,
+			);
+			path = PrivateFrameworks;
+			sourceTree = "<group>";
+		};
+		D6455E961B1482530010805B /* CoreSurface */ = {
+			isa = PBXGroup;
+			children = (
+				D6455E971B1482530010805B /* CoreSurface.h */,
+			);
+			path = CoreSurface;
+			sourceTree = "<group>";
+		};
+		D6455E981B1482530010805B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				D6455E991B1482530010805B /* IOSurface.h */,
+				D6455E9A1B1482530010805B /* IOSurfaceAPI.h */,
+				D6455E9B1B1482530010805B /* IOSurfaceBase.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		D6455E9C1B1482530010805B /* IOKit */ = {
+			isa = PBXGroup;
+			children = (
+				D6455E9D1B1482530010805B /* IOBSD.h */,
+				D6455E9E1B1482530010805B /* IOCFBundle.h */,
+				D6455E9F1B1482530010805B /* IOCFPlugIn.h */,
+				D6455EA01B1482530010805B /* IOCFSerialize.h */,
+				D6455EA11B1482530010805B /* IOCFUnserialize.h */,
+				D6455EA21B1482530010805B /* IOCFURLAccess.h */,
+				D6455EA31B1482530010805B /* IODataQueueClient.h */,
+				D6455EA41B1482530010805B /* IODataQueueShared.h */,
+				D6455EA51B1482530010805B /* IOKitKeys.h */,
+				D6455EA61B1482530010805B /* IOKitLib.h */,
+				D6455EA71B1482530010805B /* iokitmig.h */,
+				D6455EA81B1482530010805B /* IOKitServer.h */,
+				D6455EA91B1482530010805B /* IOMessage.h */,
+				D6455EAA1B1482530010805B /* IOReturn.h */,
+				D6455EAB1B1482530010805B /* IOSharedLock.h */,
+				D6455EAC1B1482530010805B /* IOTypes.h */,
+				D6455EAD1B1482530010805B /* OSMessageNotification.h */,
+			);
+			path = IOKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +321,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6455DC71B145CA90010805B /* ViewController.m in Sources */,
+				D6455DE91B1462460010805B /* RecordScreenManager.m in Sources */,
 				D6455DC41B145CA90010805B /* AppDelegate.m in Sources */,
+				D6455DED1B14695E0010805B /* UIDevice+Hardware.m in Sources */,
+				D6455DE61B145D850010805B /* RecordScreenTool.m in Sources */,
 				D6455DC11B145CA90010805B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,8 +453,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/recordInner/PrivateFrameworks/\"",
+				);
 				INFOPLIST_FILE = recordInner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					IOKit,
+					"-framework",
+					CoreSurface,
+					"-framework",
+					IOSurface,
+					"-framework",
+					IOMobileFramebuffer,
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -359,8 +486,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/recordInner/PrivateFrameworks/\"",
+				);
 				INFOPLIST_FILE = recordInner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					IOKit,
+					"-framework",
+					CoreSurface,
+					"-framework",
+					IOSurface,
+					"-framework",
+					IOMobileFramebuffer,
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
