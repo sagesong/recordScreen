@@ -17,6 +17,8 @@
 		D6455DE61B145D850010805B /* RecordScreenTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DE51B145D850010805B /* RecordScreenTool.m */; };
 		D6455DE91B1462460010805B /* RecordScreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DE81B1462460010805B /* RecordScreenManager.m */; };
 		D6455DED1B14695E0010805B /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D6455DEC1B14695E0010805B /* UIDevice+Hardware.m */; };
+		D662871E1B18379F00193488 /* MyScreenRe.m in Sources */ = {isa = PBXBuildFile; fileRef = D662871D1B18379F00193488 /* MyScreenRe.m */; };
+		D66287221B1868A800193488 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66287211B1868A800193488 /* testViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,10 @@
 		D6455EAD1B1482530010805B /* OSMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMessageNotification.h; sourceTree = "<group>"; };
 		D6455EAE1B1482530010805B /* IOMobileFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOMobileFrameBuffer.h; sourceTree = "<group>"; };
 		D6455EAF1B1482530010805B /* IOSurfaceAccelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSurfaceAccelerator.h; sourceTree = "<group>"; };
+		D662871C1B18379F00193488 /* MyScreenRe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScreenRe.h; sourceTree = "<group>"; };
+		D662871D1B18379F00193488 /* MyScreenRe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScreenRe.m; sourceTree = "<group>"; };
+		D66287201B1868A800193488 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		D66287211B1868A800193488 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,8 @@
 				D6455DCB1B145CA90010805B /* Images.xcassets */,
 				D6455DCD1B145CA90010805B /* LaunchScreen.xib */,
 				D6455DBE1B145CA90010805B /* Supporting Files */,
+				D662871C1B18379F00193488 /* MyScreenRe.h */,
+				D662871D1B18379F00193488 /* MyScreenRe.m */,
 				D6455DE41B145D850010805B /* RecordScreenTool.h */,
 				D6455DE51B145D850010805B /* RecordScreenTool.m */,
 				D6455DE71B1462460010805B /* RecordScreenManager.h */,
@@ -136,6 +144,8 @@
 			children = (
 				D6455DBF1B145CA90010805B /* Info.plist */,
 				D6455DC01B145CA90010805B /* main.m */,
+				D66287201B1868A800193488 /* testViewController.h */,
+				D66287211B1868A800193488 /* testViewController.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -320,11 +330,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D662871E1B18379F00193488 /* MyScreenRe.m in Sources */,
 				D6455DC71B145CA90010805B /* ViewController.m in Sources */,
 				D6455DE91B1462460010805B /* RecordScreenManager.m in Sources */,
 				D6455DC41B145CA90010805B /* AppDelegate.m in Sources */,
 				D6455DED1B14695E0010805B /* UIDevice+Hardware.m in Sources */,
 				D6455DE61B145D850010805B /* RecordScreenTool.m in Sources */,
+				D66287221B1868A800193488 /* testViewController.m in Sources */,
 				D6455DC11B145CA90010805B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +580,7 @@
 				D6455DE01B145CA90010805B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6455DE11B145CA90010805B /* Build configuration list for PBXNativeTarget "recordInnerTests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +589,7 @@
 				D6455DE31B145CA90010805B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

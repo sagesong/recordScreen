@@ -10,16 +10,29 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "RecordScreenManager.h"
 
 
 
 @interface ViewController ()
 - (IBAction)beginRecord:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *timeLable;
+@property (nonatomic, strong) RecordScreenManager *recordManager;
+@property (nonatomic, strong) NSTimer *timer;
+
+@property (nonatomic, assign) int timeCount;
 
 @end
 
 @implementation ViewController
+
+- (RecordScreenManager *)recordManager
+{
+    if (!_recordManager) {
+        _recordManager = [[RecordScreenManager alloc] init];
+    }
+    return _recordManager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,15 +46,54 @@
 }
 
 - (IBAction)beginRecord:(UIButton *)sender {
-    if (![self openAssistiveTouch]) {
-        return;
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        if (![self openAssistiveTouch]) {
+            return;
+        }
+        if ([self.recordManager startRecord]) {
+            NSLog(@"video record starts");
+            [self startTimer];
+        } else {
+            NSLog(@"%s video record starts",__func__);
+        }
+    } else {
+        [self.recordManager stopRecord];
+        [self invalideTimer];
     }
+    
+    
     
     
 }
 
 
+- (void)startTimer
+{
+    if (self.timer) {
+        [self.timer invalidate];
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerCallBack) userInfo:nil repeats:YES];
+    self.timeCount = 0;
+    
+}
 
+- (void)timerCallBack
+{
+    self.timeCount++;
+    int seconds = self.timeCount % 60;
+    int min = self.timeCount / 60;
+    int hour = self.timeCount / (60 * 60);
+    
+    self.timeLable.text = [NSString stringWithFormat:@"%02d:%02d:%02d",hour,min,seconds];
+    
+}
+
+- (void)invalideTimer
+{
+    [self.timer invalidate];
+    self.timer = nil;
+}
 
 
 

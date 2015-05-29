@@ -12,9 +12,9 @@
 
 + (instancetype)shareInstance;
 
-- (void)startRecord;
-- (void)stopRecord;
-- (BOOL)atRecording;
+- (BOOL)startRecord;
+- (BOOL)stopRecord;
+- (BOOL)recording;
 
 
 @end

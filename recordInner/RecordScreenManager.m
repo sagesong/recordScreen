@@ -13,16 +13,20 @@
 #import "IOSurfaceAccelerator.h"
 #import <sys/time.h>
 
-@interface RecordScreenManager ()
+@interface RecordScreenManager ()<AVCaptureAudioDataOutputSampleBufferDelegate>
 
 
 
 @property (nonatomic, strong) NSLock *pixelBufferLock;
 @property (nonatomic, strong) AVAssetWriter *videoWriter;
 @property (nonatomic, strong) AVAssetWriterInput *videoWriterInput;
+@property (nonatomic, strong) AVAssetWriterInput *audioWriterInput;
+
 @property (nonatomic, strong) AVAssetWriterInputPixelBufferAdaptor *pixelBufferAdaptor;
 @property (nonatomic, retain) dispatch_queue_t video_queue;
 @property (nonatomic, retain) dispatch_queue_t screen_queue;
+@property (nonatomic, retain) dispatch_queue_t audio_queue;
+
 
 @property (nonatomic, assign) int kbps;
 @property (nonatomic, assign) int fps;
@@ -32,6 +36,7 @@
 
 
 @property (nonatomic, strong) AVCaptureSession *audioSession;
+@property (nonatomic, strong) NSDictionary *audioOutputSetting;
 
 @end
 
@@ -43,43 +48,73 @@
     static RecordScreenManager *single;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        single = [[self alloc] init];
+        single = [[super allocWithZone:nil] init];
     });
     
     return single;
 }
 
 #pragma mark - init audio recorder
-- (void)prepareForAudioRecord
+- (BOOL)prepareForAudioRecord
 {
     // 判断授权状态
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
     if (authStatus == AVAuthorizationStatusDenied) {
         // 提示需要授权
-        return;
+        return NO;
     }
     
     _audioSession = [[AVCaptureSession alloc] init];
-    NSArray *audioDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio];
-    if (audioDevices.count > 0) {
-        AVCaptureDevice *anDevice = [audioDevices objectAtIndex:0];
-        NSError *error;
-        AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:anDevice error:&error];
-        if (error) {
-            NSLog(@"the given device cannot be used for capture");
-        }
-        
-        if ([_audioSession canAddInput:deviceInput]) {
-            [_audioSession addInput:deviceInput];
-        }
-        
-        // device output
-        AVCaptureAudioDataOutput *audioOutput = [[AVCaptureAudioDataOutput alloc] init];
-    
-        
+    if (!_audioSession) {
+        NSLog(@"AVCaptureSession allocation fail");
+        return NO;
+    }
+    AVCaptureDevice *audioDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    if (audioDevice && audioDevice.connected) {
+        NSLog(@"audio device name: %@",audioDevice.localizedName);
+    } else {
+        NSLog(@"the audio device cann't be connneted");
+        return NO;
     }
     
+    NSError *error;
+    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:audioDevice error:&error];
+    if (error) {
+        NSLog(@"the given device cannot be used for capture");
+        return NO;
+    }
     
+    if ([_audioSession canAddInput:deviceInput]) {
+        [_audioSession addInput:deviceInput];
+    }
+    
+    // device output
+    AVCaptureAudioDataOutput *audioOutput = [[AVCaptureAudioDataOutput alloc] init];
+    _audioOutputSetting = [audioOutput recommendedAudioSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
+    _audio_queue = dispatch_queue_create("audio_queue", DISPATCH_QUEUE_SERIAL);
+    [audioOutput setSampleBufferDelegate:self queue:_audio_queue];
+    if ([_audioSession canAddOutput:audioOutput]) {
+        [_audioSession addOutput:audioOutput];
+    }
+    
+    [_audioSession startRunning];
+    
+    return YES;
+    
+}
+
+#pragma mark - AVCaptureAudioDataOutputSampleBufferDelegate
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+    CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDescription);
+    if (mediaType == kCMMediaType_Audio) {
+        if ([self.audioWriterInput isReadyForMoreMediaData]) {
+            [self.audioWriterInput appendSampleBuffer:sampleBuffer];
+        } else {
+            NSLog(@"Error in append audio buff");
+        }
+    }
     
 }
 
@@ -90,10 +125,12 @@
     return self.isRecording;
 }
 
-- (void)startRecord
+- (BOOL)startRecord
 {
-    self.isRecording = YES;
     
+    [self prepareForAudioRecord];
+    [self setupRecordParam];
+
     NSError *sessionError = nil;
     if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(setCategory:withOptions:error:)]) [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDuckOthers error:&sessionError];
     else
@@ -156,13 +193,17 @@
         
     });
     
+    return YES;
+    
     
 }
 
-- (void)stopRecord
+- (BOOL)stopRecord
 {
     self.isRecording = NO;
-                   
+    [self.audioSession stopRunning];
+    
+    return YES;
 }
 
 - (void)finishRecord
@@ -296,13 +337,17 @@
 - (void)setupRecordParam
 {
     //设置文件保存路径
-    NSString *filePath = nil;
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"game.mp4"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+    }
     NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
     
     // 初始化 成员变量
     _pixelBufferLock = [[NSLock alloc] init];
     _video_queue = dispatch_queue_create("video_queue", DISPATCH_QUEUE_SERIAL);
-    _screen_queue = dispatch_queue_create("screen_queue", DISPATCH_QUEUE_SERIAL);
+    
+    
     VideoSolution videoSetting = [RecordScreenTool getVideoSetting];
     [self settingFpsAndRate:videoSetting];
     [self settingVideoWidthAndHeight];
@@ -421,8 +466,18 @@
     if (_videoWriter) {
         return;
     }
+    
+#warning audio output setting to do!
     NSError *error;
     _videoWriter = [[AVAssetWriter alloc] initWithURL:url fileType:AVFileTypeMPEG4 error:&error];
+    
+    _audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:_audioOutputSetting];
+    _audioWriterInput.expectsMediaDataInRealTime = YES;
+    if ([_videoWriter canAddInput:_audioWriterInput]) {
+        [_videoWriter addInput:_audioWriterInput];
+    } else {
+        NSLog(@"assetWriter cann't add audioWriterInput");
+    }
     
     NSDictionary *compressionProperties = @{AVVideoAverageBitRateKey : @(self.kbps * 1000), AVVideoMaxKeyFrameIntervalKey : @(self.fps), AVVideoProfileLevelKey : AVVideoProfileLevelH264Main32};
     
